@@ -31,7 +31,7 @@ function AuthProviderWrapper(props) {
 
     if (storedToken) {
       axios
-        .get(`${process.env.REACT_APP_API_URL}/auth/verify`, {
+        .get(`${process.env.REACT_APP_API_URL}/api/verify`, {
           headers: {
             Authorization: `Bearer ${storedToken}`,
           },
@@ -41,7 +41,7 @@ function AuthProviderWrapper(props) {
           setIsLoading(false);
           setUser(response.data);
         })
-        .catch(() => {
+        .catch((err) => {
           setIsLoggedIn(false);
           setIsLoading(false);
           setUser(null);
@@ -75,3 +75,5 @@ function AuthProviderWrapper(props) {
 }
 
 export { AuthContext, AuthProviderWrapper };
+
+//HOC - High Order Components
