@@ -15,6 +15,12 @@ function Navbar() {
             <Link to={`profile/${user._id}`}>
               <button>Profile</button>
             </Link>
+            <Link to={"/createpost"}>
+              <button>create post</button>
+            </Link>
+            <Link to={"/createevent"}>
+              <button>create event</button>
+            </Link>
             <button onClick={logoutUser}>Logout</button>
           </>
         )}

@@ -8,6 +8,8 @@ function SignupPage() {
   const [sport, setSport] = useState("");
   const [team, setTeam] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const [types, setTypes] = useState("Player");
+
   const [errorMessage, setErrorMessage] = useState(undefined);
 
   const navigate = useNavigate();
@@ -16,11 +18,12 @@ function SignupPage() {
   const handleEmail = (e) => setEmail(e.target.value);
   const handleSport = (e) => setSport(e.target.value);
   const handleTeam = (e) => setTeam(e.target.value);
+  const handleTypes = (e) => setTypes(e.target.value);
   const handleImageUrl = (file) => setImageUrl(file);
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const body = { username, password, email, sport, team, imageUrl };
+    const body = { username, password, email, sport, team, imageUrl, types };
 
     axios
       .post(`${process.env.REACT_APP_API_URL}/api/signup`, body)
@@ -75,6 +78,10 @@ function SignupPage() {
             value={imageUrl}
             onChange={handleImageUrl}
           />
+          <select name="types" onChange={handleTypes}>
+            <option value="Player">Player</option>
+            <option value="Scouter">Scouter</option>
+          </select>
           <button type="submit">Sign Up</button>
         </form>
 

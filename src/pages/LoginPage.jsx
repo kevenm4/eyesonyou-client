@@ -20,8 +20,9 @@ function LoginPage() {
     axios
       .post(`${process.env.REACT_APP_API_URL}/api/login`, body)
       .then((response) => {
-        console.log(response.data);
-        storeToken(response.data.authToken);
+        const token = response.data.authToken;
+        /* console.log(response.data.authToken); */
+        storeToken(token);
         authenticateUser();
         navigate("/feed");
       })

@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
@@ -9,6 +8,8 @@ import IsAnon from "./components/IsAnon";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
+import CreatePostFormPage from "./pages/CreatePostFormPage";
+import CreateEventFormPage from "./pages/CreateEventFormPage";
 function App() {
   return (
     <div className="App">
@@ -28,6 +29,22 @@ function App() {
           element={
             <IsPrivate>
               <ProfilePage />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/createpost"
+          element={
+            <IsPrivate>
+              <CreatePostFormPage />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/createevent"
+          element={
+            <IsPrivate>
+              <CreateEventFormPage />
             </IsPrivate>
           }
         />
