@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import JoinEventButton from "./JoinEventButton";
 function EvenCard() {
+  /* const {el} = props */
   const [event, setEvent] = useState([]);
   const { getToken } = useContext(AuthContext);
   const token = getToken();
@@ -36,7 +37,7 @@ function EvenCard() {
               <h6>{events.title}</h6>
               <h6>{events.description}</h6>
               <h6>{events.author && events.author.username}</h6>
-              <JoinEventButton />
+              <JoinEventButton id={events._id} />
             </>
           );
         })}

@@ -10,6 +10,9 @@ import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
 import CreatePostFormPage from "./pages/CreatePostFormPage";
 import CreateEventFormPage from "./pages/CreateEventFormPage";
+import SearchPage from "./pages/SearchPage";
+import UserProfile from "./pages/UserProfile";
+import EditProfile from "./pages/EditProfile";
 function App() {
   return (
     <div className="App">
@@ -41,10 +44,34 @@ function App() {
           }
         />
         <Route
+          path="/edit-profile"
+          element={
+            <IsPrivate>
+              <EditProfile />
+            </IsPrivate>
+          }
+        />
+        <Route
           path="/createevent"
           element={
             <IsPrivate>
               <CreateEventFormPage />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/search"
+          element={
+            <IsPrivate>
+              <SearchPage />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/userprofile"
+          element={
+            <IsPrivate>
+              <UserProfile />
             </IsPrivate>
           }
         />

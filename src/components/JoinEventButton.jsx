@@ -3,17 +3,18 @@ import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 
-function JoinEventButton() {
+function JoinEventButton(props) {
+  const { id } = props;
   const [join, setJoin] = useState([]);
-  const { eventId } = useParams();
   const { getToken } = useContext(AuthContext);
-  const token = getToken();
+  const token = localStorage.getItem("authToken");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const body = {};
     axios
-      .post(`${process.env.REACT_APP_API_URL}/api/event/${eventId}/join`, {
+      .put(`${process.env.REACT_APP_API_URL}/api/event/${id}/join`, body, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

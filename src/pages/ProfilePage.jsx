@@ -2,14 +2,27 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
-
 function ProfilePage() {
-  const [user, setUser] = useState([]);
+  const [users, setUsers] = useState(null);
   const { userId } = useParams();
   const [posts, setPosts] = useState([]);
+  const navigate = useNavigate();
   const { getToken } = useContext(AuthContext);
-
+  const { user, logoutUser } = useContext(AuthContext);
   const token = getToken();
+
+  const deleteUser = () => {
+    axios
+      .delete(`${process.env.REACT_APP_API_URL}/user`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then(() => {
+        navigate(`/`);
+        logoutUser();
+      });
+  };
   const getProfile = async () => {
     try {
       let response = await axios.get(
@@ -20,28 +33,45 @@ function ProfilePage() {
           },
         }
       );
-      setUser(response.data);
-      console.log(response.data);
+      setUsers(response.data);
+      console.log(response.data.friends);
     } catch (err) {
       console.log(err);
     }
   };
+
   useEffect(() => {
     getProfile();
   }, []);
 
   return (
     <div>
-      {user && (
-        <div>
-          <img src={user.imageUrl} alt="userPhoto" />
-          <h6>Name:{user.username}</h6>
-          <h6>Sport:{user.sport}</h6>
-          <h6>Team:{user.team}</h6>
-          <h6>Events:{user.Events}</h6>
-          <h6>types:{user.types}</h6>
-        </div>
+      {users !== null && (
+        <>
+          <img src={users.imageUrl} alt="userPhoto" />
+          <Link to={"/edit-profile"}>
+            <button>Edit</button>
+          </Link>
+          <h6>Name:{users.username}</h6>
+          <h6>Sport:{users.sport}</h6>
+          <h6>Team:{users.team}</h6>
+          <h6>types:{users.types}</h6>
+          <h6>Friends: {users.friends.length}</h6>
+          <h6>
+            Events:{" "}
+            {users.Events.map((el) => {
+              return <h1>{el.title}</h1>;
+            })}
+          </h6>
+          <h6>
+            Posts:
+            {users.Posts.map((el) => {
+              return <h1>{el.title}</h1>;
+            })}
+          </h6>
+        </>
       )}
+      <button onClick={deleteUser}>Delete Account</button>
     </div>
     // <h6>friends:{user.friends.length}</h6>
     //<>

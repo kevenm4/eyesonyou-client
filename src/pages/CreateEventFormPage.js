@@ -6,31 +6,30 @@ import { AuthContext } from "../context/auth.context";
 function CreateEventFormPage() {
   const [imageUrl, setImageUrl] = useState("");
   const [description, setDescription] = useState("");
+  const [title, setTitle] = useState("");
 
   const { getToken, user } = useContext(AuthContext);
   const token = getToken();
   const navigate = useNavigate();
 
-  const handleImageUrl = (e) => setImageUrl(e.target.file);
+  //const handleImageUrl = (e) => setImageUrl(e.target.file);
   const handleDescription = (e) => setDescription(e.target.value);
+  const handleTitle = (e) => setTitle(e.target.value);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const body = { imageUrl, description };
+    const body = { title, description };
 
     axios
-      .post(
-        `${process.env.REACT_APP_API_URL}/api/user/${user._id}/event`,
-        body,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
+      .post(`${process.env.REACT_APP_API_URL}/api/event-create`, body, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then(() => {
-        setImageUrl("");
+        // setImageUrl("");
         setDescription("");
-        navigate("/feed");
+        navigate(`/feed`);
       });
   };
   return (
@@ -38,13 +37,15 @@ function CreateEventFormPage() {
       <h1>Create event</h1>
       <div>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="imageUrl">event Image</label>
+          {/*  <label htmlFor="imageUrl">event Image</label>
           <input
             type="file"
             name="imageUrl"
             value={imageUrl}
             onChange={handleImageUrl}
-          />
+          /> */}
+          <label htmlFor="">Title</label>
+          <input type="text" value={title} onChange={handleTitle} />
           <label htmlFor="description">event description</label>
           <input
             type="text"

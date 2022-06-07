@@ -5,6 +5,7 @@ function FeedPage() {
   return (
     <div>
       <PostCard />
+      <h1>Events: </h1>
       <EvenCard />
     </div>
   );

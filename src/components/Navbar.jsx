@@ -21,6 +21,9 @@ function Navbar() {
             <Link to={"/createevent"}>
               <button>create event</button>
             </Link>
+            <Link to={"/search"}>
+              <button>search</button>
+            </Link>
             <button onClick={logoutUser}>Logout</button>
           </>
         )}
