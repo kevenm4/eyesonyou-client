@@ -4,32 +4,33 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 
 function SearchInput() {
+  const [searchInput, setSearchInput] = useState("");
   const [search, setSearch] = useState("");
   const { getToken } = useContext(AuthContext);
   const token = getToken();
-  const handleSearch = (e) => setSearch(e.target.value);
+  const handleSearch = (e) => setSearchInput(e.target.value);
   const navigate = useNavigate();
-  const getUsersName = async () => {
-    const body = {search}
+
+  console.log(searchInput)
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
     try {
+      const body = { username: searchInput}
       let response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/user/search}`, body,
+        `${process.env.REACT_APP_API_URL}/api/user/search`, body,
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }
       );
-      setSearch(response.data);
-      console.log(search)
+      //setSearch(response.data);
+      console.log(response.data)
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const handleSubmit = (e) => {
-    e.prevendDefault();
-    getUsersName();
   };
 
   return (
@@ -37,9 +38,9 @@ function SearchInput() {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          name="username"
+          name="searchInput"
           onChange={handleSearch}
-          value={search}
+          value={searchInput}
           placeholder="Search your users!"
         />
         <button>Search</button>

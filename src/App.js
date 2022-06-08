@@ -13,6 +13,7 @@ import CreateEventFormPage from "./pages/CreateEventFormPage";
 import SearchPage from "./pages/SearchPage";
 import UserProfile from "./pages/UserProfile";
 import EditProfile from "./pages/EditProfile";
+import FooterNav from "./components/FooterNav";
 function App() {
   return (
     <div className="App">
@@ -92,6 +93,7 @@ function App() {
           }
         />
       </Routes>
+      <FooterNav />
     </div>
   );
 }

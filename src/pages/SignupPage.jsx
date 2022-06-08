@@ -7,7 +7,6 @@ function SignupPage() {
   const [email, setEmail] = useState("");
   const [sport, setSport] = useState("");
   const [team, setTeam] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
   const [types, setTypes] = useState("Player");
 
   const [errorMessage, setErrorMessage] = useState(undefined);
@@ -19,11 +18,10 @@ function SignupPage() {
   const handleSport = (e) => setSport(e.target.value);
   const handleTeam = (e) => setTeam(e.target.value);
   const handleTypes = (e) => setTypes(e.target.value);
-  const handleImageUrl = (file) => setImageUrl(file);
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const body = { username, password, email, sport, team, imageUrl, types };
+    const body = { username, password, email, sport, team, types };
 
     axios
       .post(`${process.env.REACT_APP_API_URL}/api/signup`, body)
@@ -71,13 +69,7 @@ function SignupPage() {
           />
           <label htmlFor="team">Team</label>
           <input type="team" name="team" value={team} onChange={handleTeam} />
-          <label htmlFor="imageUrl">User Image</label>
-          <input
-            type="file"
-            name="imageUrl"
-            value={imageUrl}
-            onChange={handleImageUrl}
-          />
+
           <select name="types" onChange={handleTypes}>
             <option value="Player">Player</option>
             <option value="Scouter">Scouter</option>
@@ -88,6 +80,9 @@ function SignupPage() {
         {errorMessage && <p className="error-message">{errorMessage}</p>}
         <p>Already have an account?</p>
         <Link to="/login"> Login</Link>
+        <Link to={"/"}>
+          <p>Back</p>
+        </Link>
       </div>
     </div>
   );

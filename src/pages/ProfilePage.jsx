@@ -2,27 +2,35 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
+import MyEvents from "../components/MyEvents";
+
 function ProfilePage() {
-  const [users, setUsers] = useState(null);
+  const [user, setUser] = useState(null);
+  const [isUpdated, setIsUpdated] = useState(true);
   const { userId } = useParams();
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
   const { getToken } = useContext(AuthContext);
-  const { user, logoutUser } = useContext(AuthContext);
+  const { logoutUser } = useContext(AuthContext);
   const token = getToken();
 
-  const deleteUser = () => {
-    axios
-      .delete(`${process.env.REACT_APP_API_URL}/user`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then(() => {
-        navigate(`/`);
-        logoutUser();
-      });
+  console.log(user);
+  const deleteUser = async () => {
+    try {
+      let response = await axios.delete(
+        `${process.env.REACT_APP_API_URL}/api/user`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      logoutUser();
+    } catch (err) {
+      console.log(err);
+    }
   };
+
   const getProfile = async () => {
     try {
       let response = await axios.get(
@@ -33,8 +41,8 @@ function ProfilePage() {
           },
         }
       );
-      setUsers(response.data);
-      console.log(response.data.friends);
+      setUser(response.data);
+      setIsUpdated(true);
     } catch (err) {
       console.log(err);
     }
@@ -42,33 +50,39 @@ function ProfilePage() {
 
   useEffect(() => {
     getProfile();
-  }, []);
+  }, [isUpdated]);
 
   return (
     <div>
-      {users !== null && (
+      {user !== null && (
         <>
-          <img src={users.imageUrl} alt="userPhoto" />
+          <img src={user.imageUrl} alt="userPhoto" />
           <Link to={"/edit-profile"}>
             <button>Edit</button>
           </Link>
-          <h6>Name:{users.username}</h6>
-          <h6>Sport:{users.sport}</h6>
-          <h6>Team:{users.team}</h6>
-          <h6>types:{users.types}</h6>
-          <h6>Friends: {users.friends.length}</h6>
+          <h6>Name:{user.username}</h6>
+          <h6>Sport:{user.sport}</h6>
+          <h6>Team:{user.team}</h6>
+          <h6>types:{user.types}</h6>
+          <h6>Friends: {user.friends.length}</h6>
           <h6>
-            Events:{" "}
-            {users.Events.map((el) => {
+            Events:
+            {user.Events.map((el) => {
               return <h1>{el.title}</h1>;
             })}
           </h6>
           <h6>
             Posts:
-            {users.Posts.map((el) => {
-              return <h1>{el.title}</h1>;
+            {user.Posts.map((el) => {
+              return (
+                <>
+                  <h1>{el.author && el.author.username}</h1>
+                  <p>{el.description}</p>
+                </>
+              );
             })}
           </h6>
+          <MyEvents events={user.Events} setIsUpdated={setIsUpdated} />
         </>
       )}
       <button onClick={deleteUser}>Delete Account</button>

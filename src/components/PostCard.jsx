@@ -38,12 +38,18 @@ function PostCard() {
               <h6>{posts.title}</h6>
               <h6>{posts.description}</h6>
               <h6>{posts.author && posts.author.username}</h6>
-              <h6>{posts.Usercomments && posts.Usercomments.author}</h6>
-              <p>{posts.Usercomments.map((el) => {
-                return <p>{el.text}</p>
-              })}</p>
+              <p>
+                {posts.Usercomments.map((el) => {
+                  return (
+                    <p>
+                      {el.author && el.author.username}
+                      {el.text}
+                    </p>
+                  );
+                })}
+              </p>
               <p>{posts.Usercomments && posts.Usercomments.text}</p>
-              <CommentsInput id={posts._id}/>
+              <CommentsInput id={posts._id} />
             </>
           );
         })}

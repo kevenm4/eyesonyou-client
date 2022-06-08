@@ -8,6 +8,8 @@ function EvenCard() {
   const [event, setEvent] = useState([]);
   const { getToken } = useContext(AuthContext);
   const token = getToken();
+
+  console.log(event)
   const getEventCard = async () => {
     try {
       let response = await axios.get(
@@ -19,7 +21,6 @@ function EvenCard() {
         }
       );
       setEvent(response.data);
-      console.log(response.data);
     } catch (err) {
       console.log(err);
     }
@@ -30,13 +31,13 @@ function EvenCard() {
   return (
     <div>
       <>
-        {event.map((events) => {
+        {event && event.map((events) => {
           return (
             <>
               <img src={events.imageUrl} alt="eventphoto" />
+              <h1>{events.Author.username}</h1>
               <h6>{events.title}</h6>
               <h6>{events.description}</h6>
-              <h6>{events.author && events.author.username}</h6>
               <JoinEventButton id={events._id} />
             </>
           );

@@ -2,18 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
+import styled from "styled-components";
+
+const Nav = styled.nav``;
+const NavDiv = styled.div`
+  height: 50px;
+`;
 function Navbar() {
   const { isLoggedIn, user, logoutUser } = useContext(AuthContext);
   return (
-    <div>
+    <NavDiv>
       <nav>
         {isLoggedIn && (
           <>
-            <Link to="/feed">
-              <button>Feed</button>
-            </Link>
-            <Link to={`profile/${user._id}`}>
-              <button>Profile</button>
+            <Link to={"/"}>
+              <button>Home</button>
             </Link>
             <Link to={"/createpost"}>
               <button>create post</button>
@@ -21,25 +24,19 @@ function Navbar() {
             <Link to={"/createevent"}>
               <button>create event</button>
             </Link>
-            <Link to={"/search"}>
-              <button>search</button>
-            </Link>
             <button onClick={logoutUser}>Logout</button>
           </>
         )}
 
         {!isLoggedIn && (
           <>
-            <Link to="/signup">
-              <button>Signup</button>
-            </Link>
             <Link to="/login">
               <button>Login</button>
             </Link>
           </>
         )}
       </nav>
-    </div>
+    </NavDiv>
   );
 }
 
