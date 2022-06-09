@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-
 const MainPage = styled.div`
   display: flex;
   flex-direction: column;
@@ -17,7 +16,7 @@ const DivMain = styled.div`
   height: 50vh;
 `;
 const DivSecond = styled.div`
-  height: 50vh;
+  height: 70vh;
   background-color: black;
   color: white;
   padding-top: 100px;
@@ -37,10 +36,11 @@ function HomePage() {
       <DivSecond>
         <h1>About Us</h1>
         <MainP>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
-          harum optio praesentium quod quia eligendi necessitatibus placeat
-          error iusto eius nesciunt, vero ex debitis doloremque dignissimos! Non
-          esse iste corporis.
+          We are Eyes On You our main goal is give the eyes who don´t see the
+          diamond and give the diamond the opportunity to shine,we are a
+          comminity formed for player looking for their moment to shine and
+          scouters looking for player,we want to make easy e more flexible the
+          Scouter work and for these player opportunity to show theirs skills.
         </MainP>
       </DivSecond>
     </DivMain>

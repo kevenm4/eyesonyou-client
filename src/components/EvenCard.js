@@ -9,8 +9,15 @@ const EventCard = styled.div`
   max-width: 600px;
   text-align: center;
   font-family: arial;
-  background-color: white;
+  background-color: rgb(229, 138, 34);
+  gap: 20px;
 `;
+const Card = styled.div`
+  background-color: white;
+  border-radius: 5px;
+  padding: 1rem;
+`;
+
 const ProfileImg = styled.img`
   border: 1px solid #ccc;
   border-radius: 100px;
@@ -45,23 +52,21 @@ function EvenCard() {
 
   return (
     <EventCard>
-      <>
-        {event &&
-          event.map((events) => {
-            return (
-              <>
-                <h6>
-                  <b>{events.Author.username}</b>
-                </h6>
+      {event &&
+        event.map((events) => {
+          return (
+            <Card>
+              <h6>
+                <b>{events.Author.username}</b>
+              </h6>
 
-                <img src={events.imageUrl} alt="eventphoto" />
-                <h6>{events.title}</h6>
-                <h6>{events.description}</h6>
-                <JoinEventButton id={events._id} />
-              </>
-            );
-          })}
-      </>
+              <img src={events.imageUrl} alt="eventphoto" />
+              <h6>{events.title}</h6>
+              <h6>{events.description}</h6>
+              <JoinEventButton id={events._id} />
+            </Card>
+          );
+        })}
     </EventCard>
   );
 }

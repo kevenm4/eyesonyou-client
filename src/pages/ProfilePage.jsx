@@ -23,7 +23,7 @@ const List = styled.div`
   flex-wrap: wrap;
   gap: 1rem;
   width: 100%;
-`
+`;
 const Card = styled.div`
   width: 100%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -137,8 +137,7 @@ function ProfilePage() {
             <h6>Name:{user.username}</h6>
             <h6>Sport:{user.sport}</h6>
             <h6>Team:{user.team}</h6>
-            <h6>types:{user.types}</h6>
-            <h6>Friends: {user.friends.length}</h6>
+            <h6>{user.types}</h6>
             <DeleteButton onClick={deleteUser}>Delete</DeleteButton>
           </ProfileInfo>
           <List>
