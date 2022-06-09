@@ -1,13 +1,28 @@
 import React from "react";
 import PostCard from "../components/PostCard";
 import EvenCard from "../components/EvenCard";
+import styled from "styled-components";
+
+const FeedInfo = styled.div`
+  padding: 10px;
+  gap: 15px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Wrapper = styled.div`
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(229, 138, 34);
+`;
 function FeedPage() {
   return (
-    <div>
-      <PostCard />
-      <h1>Events: </h1>
-      <EvenCard />
-    </div>
+    <Wrapper>
+      <FeedInfo>
+        <PostCard />
+        <EvenCard />
+      </FeedInfo>
+    </Wrapper>
   );
 }
 

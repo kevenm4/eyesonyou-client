@@ -13,16 +13,14 @@ const DeleteButton = styled.button`
   padding: 10px 5px;
   margin: 10px 5px;
 `;
-function MyEvents(props) {
-  const events = props.events;
-  console.log(events);
+function MyPost(props) {
+  const posts = props.posts;
   const { getToken } = useContext(AuthContext);
   const token = getToken();
-
-  const deleteEvent = async (eventId) => {
+  const deletePost = async (postId) => {
     try {
-      let response = await axios.delete(
-        `${process.env.REACT_APP_API_URL}/api/event/${eventId}`,
+      await axios.delete(
+        `${process.env.REACT_APP_API_URL}/api/post/${postId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -37,15 +35,15 @@ function MyEvents(props) {
 
   return (
     <div>
-      {events.map((item) => {
+      {posts.map((item) => {
         return (
           <div>
             <DeleteButton
               onClick={() => {
-                deleteEvent(item._id);
+                deletePost(item._id);
               }}
             >
-              Delete Event
+              Delete Post
             </DeleteButton>
           </div>
         );
@@ -54,4 +52,4 @@ function MyEvents(props) {
   );
 }
 
-export default MyEvents;
+export default MyPost;

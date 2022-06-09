@@ -2,7 +2,47 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
+import styled from "styled-components";
 
+const FormLogin = styled.form`
+  background: white;
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 20px 30px;
+  box-sizing: border-box;
+  width: 80%;
+  margin: 0 10%;
+  position: relative;
+`;
+const InputLogin = styled.input`
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  color: #2c3e50;
+  font-size: 13px;
+`;
+const LoginDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  align-content: center;
+  background-color: rgb(229, 138, 34);
+`;
+const LoginButton = styled.button`
+  width: 100px;
+  background: black;
+  font-weight: bold;
+  color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+`;
 function CreatePostFormPage() {
   const [imageUrl, setImageUrl] = useState("");
   const [description, setDescription] = useState("");
@@ -11,8 +51,22 @@ function CreatePostFormPage() {
   const { getToken, user } = useContext(AuthContext);
   const token = getToken();
   const navigate = useNavigate();
+  const handleFileUpload = (e) => {
+    const uploadData = new FormData();
 
-  const handleImageUrl = (e) => setImageUrl(e.target.file);
+    uploadData.append("imageUrl", e.target.files[0]);
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/api/upload`, uploadData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        setImageUrl(response.data.fileUrl);
+      })
+      .catch((err) => console.log("Error while uploading the file: ", err));
+  };
   const handleDescription = (e) => setDescription(e.target.value);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,28 +90,32 @@ function CreatePostFormPage() {
   };
 
   return (
-    <div>
+    <LoginDiv>
       <h1>Create Post</h1>
       <div>
-        <form onSubmit={handleSubmit}>
+        <FormLogin onSubmit={handleSubmit}>
           <label htmlFor="imageUrl">Post Image</label>
-          <input
+          <InputLogin
             type="file"
             name="imageUrl"
-            value={imageUrl}
-            onChange={handleImageUrl}
+            onChange={handleFileUpload}
+            placeholder="imageUrl"
           />
-          <label htmlFor="description">Post description</label>
-          <input
+          <label htmlFor="description"></label>
+          <InputLogin
             type="text"
             name="description"
             value={description}
             onChange={handleDescription}
+            placeholder="description"
           />
-          <button type="submit">create</button>
-        </form>
+          <LoginButton type="submit">create</LoginButton>
+        </FormLogin>
       </div>
-    </div>
+      <Link to={"/feed"}>
+        <p>Feed</p>
+      </Link>
+    </LoginDiv>
   );
 }
 

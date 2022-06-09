@@ -21,7 +21,6 @@ const InputLogin = styled.input`
   margin-bottom: 10px;
   width: 100%;
   box-sizing: border-box;
-  font-family: montserrat;
   color: #2c3e50;
   font-size: 13px;
 `;
@@ -29,16 +28,16 @@ const LoginDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100vh;
   align-content: center;
+  background-color: rgb(229, 138, 34);
 `;
 const LoginButton = styled.button`
   width: 100px;
-  background: #27ae60;
+  background: black;
   font-weight: bold;
   color: white;
-  border: 0 none;
-  border-radius: 1px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
   cursor: pointer;
   padding: 10px 5px;
   margin: 10px 5px;
@@ -94,11 +93,12 @@ function LoginPage() {
             placeholder="password"
           />
 
-          <button type="submit">Login</button>
+          <LoginButton type="submit">Login</LoginButton>
         </FormLogin>
         {errorMessage && <p className="error-message">{errorMessage}</p>}
-        <p>Don´t have an account?</p>
-        <Link to="/signup"> Sign up</Link>
+        <p>
+          Don´t have an account? <Link to="/signup"> Sign up</Link>
+        </p>
         <Link to={"/"}>
           <p>Back</p>
         </Link>

@@ -2,7 +2,18 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
-
+import styled from "styled-components";
+const LoginButton = styled.button`
+  width: 100px;
+  background: black;
+  font-weight: bold;
+  color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+`;
 function CommentsInput(props) {
   const { id } = props;
   const [text, setText] = useState("");
@@ -13,21 +24,20 @@ function CommentsInput(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const body = { text };
-    axios.post(
-      `${process.env.REACT_APP_API_URL}/api/post/${id}/comment`,
-      body, {
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/api/post/${id}/comment`, body, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
-        .then((response) => {
-          console.log(response.data);
-          setText("");
-          navigate("/feed");
-        })
-        .catch((err) => {
-          console.log(err);
-        })
+      .then((response) => {
+        console.log(response.data);
+        setText("");
+        navigate("/feed");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -40,7 +50,7 @@ function CommentsInput(props) {
           value={text}
           onChange={handleText}
         />
-        <button type="submit">create</button>
+        <LoginButton type="submit">create</LoginButton>
       </form>
     </div>
   );

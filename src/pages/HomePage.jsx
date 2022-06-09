@@ -2,12 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+
 const MainPage = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 40vh;
-  background-image: url("https://cdn.dribbble.com/users/1241808/screenshots/5516684/media/a9f515fbf8565b6782fafbafa7616142.gif");
+  height: 50vh;
+  background-color: rgb(229, 138, 34);
   background-repeat: no-repeat;
   background-size: 375px 300px;
 `;
@@ -16,13 +17,15 @@ const DivMain = styled.div`
   height: 50vh;
 `;
 const DivSecond = styled.div`
-  height: 80vh;
+  height: 50vh;
   background-color: black;
   color: white;
-  padding-top: 60px;
+  padding-top: 100px;
 `;
 
-const MainP = styled.p``;
+const MainP = styled.p`
+  margin: 8px 0px 10px 0px;
+`;
 
 function HomePage() {
   return (

@@ -1,6 +1,7 @@
 import "./App.css";
+import "./index.css"
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import NavComp from "./components/NavComp";
 import HomePage from "./pages/HomePage";
 import FeedPage from "./pages/FeedPage";
 import IsPrivate from "./components/IsPrivate";
@@ -13,11 +14,12 @@ import CreateEventFormPage from "./pages/CreateEventFormPage";
 import SearchPage from "./pages/SearchPage";
 import UserProfile from "./pages/UserProfile";
 import EditProfile from "./pages/EditProfile";
-import FooterNav from "./components/FooterNav";
+import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   return (
     <div className="App">
-      <Navbar />
+      <NavComp />
+      <main>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route
@@ -93,7 +95,7 @@ function App() {
           }
         />
       </Routes>
-      <FooterNav />
+      </main>
     </div>
   );
 }
