@@ -38,7 +38,7 @@ function HomePage() {
         <MainP>
           We are Eyes On You our main goal is give the eyes who don´t see the
           diamond and give the diamond the opportunity to shine,we are a
-          comminity formed for player looking for their moment to shine and
+          community formed for player looking for their moment to shine and
           scouters looking for player,we want to make easy e more flexible the
           Scouter work and for these player opportunity to show theirs skills.
         </MainP>
