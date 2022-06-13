@@ -41,24 +41,37 @@ function UserProfile() {
     <div>
       {user !== null && (
         <>
-          <img src={user.imageUrl} alt="userPhoto" /> 
-          <h6>Name:{user.username}</h6>
-          <h6>Sport:{user.sport}</h6>
-          <h6>Team:{user.team}</h6>
-          <h6>types:{user.types}</h6>
-          <h6>Friends: {user.friends.length}</h6>
-          <h6>
-            Events:
-            {user.Events.map((el) => {
-              return <h1>{el.title}</h1>;
-            })}
-          </h6>
-          <h6>
-            Posts:
-            {user.Posts.map((el) => {
-              return <h1>{el.title}</h1>;
-            })}
-          </h6>
+          <div>
+            <img src={user.imageUrl} alt="userPhoto" />
+            <h6>Name:{user.username}</h6>
+            <h6>Sport:{user.sport}</h6>
+            <h6>Team:{user.team}</h6>
+            <h6>{user.types}</h6>
+          </div>
+          <div>
+            {user.types === "Scouter" &&
+              user.Events.map((el) => {
+                return (
+                  <div>
+                    <img src={el.imageUrl} alt="postPhoto" />
+                    <h1>{el.author && el.author.username}</h1>
+                    <p>{el.description}</p>
+                  </div>
+                );
+              })}
+          </div>
+          <div>
+            {user.types === "Player" &&
+              user.Posts.map((el) => {
+                return (
+                  <div>
+                    <img src={el.imageUrl} alt="postPhoto" />
+                    <h1>{el.author && el.author.username}</h1>
+                    <p>{el.description}</p>
+                  </div>
+                );
+              })}
+          </div>
         </>
       )}
     </div>

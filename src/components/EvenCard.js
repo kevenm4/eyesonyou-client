@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
-import JoinEventButton from "./JoinEventButton";
 import styled from "styled-components";
 const EventCard = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -63,7 +62,6 @@ function EvenCard() {
               <img src={events.imageUrl} alt="eventphoto" />
               <h6>{events.title}</h6>
               <h6>{events.description}</h6>
-              <JoinEventButton id={events._id} />
             </Card>
           );
         })}
