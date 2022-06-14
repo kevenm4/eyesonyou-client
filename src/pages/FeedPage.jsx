@@ -1,5 +1,4 @@
 import React from "react";
-import PostCard from "../components/PostCard";
 import EvenCard from "../components/EvenCard";
 import styled from "styled-components";
 
@@ -19,7 +18,6 @@ function FeedPage() {
   return (
     <Wrapper>
       <FeedInfo>
-        <PostCard />
         <EvenCard />
       </FeedInfo>
     </Wrapper>

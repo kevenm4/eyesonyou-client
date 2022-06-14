@@ -54,15 +54,16 @@ function EvenCard() {
       {event &&
         event.map((events) => {
           return (
-            <Card>
+            <>
               <h6>
                 <b>{events.Author.username}</b>
               </h6>
-
-              <img src={events.imageUrl} alt="eventphoto" />
-              <h6>{events.title}</h6>
-              <h6>{events.description}</h6>
-            </Card>
+              <Card>
+                <img src={events.imageUrl} alt="eventphoto" />
+                <h6>{events.title}</h6>
+                <h6>{events.description}</h6>
+              </Card>
+            </>
           );
         })}
     </EventCard>

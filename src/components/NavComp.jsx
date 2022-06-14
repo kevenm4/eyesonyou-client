@@ -32,9 +32,6 @@ function NavComp() {
                 <Nav.Link as={Link} to={"/search"}>
                   Search
                 </Nav.Link>
-                <Nav.Link as={Link} to={"/createpost"}>
-                  Create Post
-                </Nav.Link>
                 <Nav.Link as={Link} to={"/createevent"}>
                   Create event
                 </Nav.Link>

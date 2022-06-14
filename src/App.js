@@ -9,7 +9,6 @@ import IsAnon from "./components/IsAnon";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
-import CreatePostFormPage from "./pages/CreatePostFormPage";
 import CreateEventFormPage from "./pages/CreateEventFormPage";
 import SearchPage from "./pages/SearchPage";
 import UserProfile from "./pages/UserProfile";
@@ -35,15 +34,6 @@ function App() {
             element={
               <IsPrivate>
                 <ProfilePage />
-              </IsPrivate>
-            }
-          />
-      
-          <Route
-            path="/createpost"
-            element={
-              <IsPrivate>
-                <CreatePostFormPage />
               </IsPrivate>
             }
           />
