@@ -138,6 +138,7 @@ function ProfilePage() {
             <h6>Sport:{user.sport}</h6>
             <h6>Team:{user.team}</h6>
             <h6>{user.types}</h6>
+            <p>{user.overview}</p>
             <DeleteButton onClick={deleteUser}>Delete</DeleteButton>
           </ProfileInfo>
           <List>

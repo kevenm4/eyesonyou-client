@@ -46,6 +46,7 @@ function EditProfile() {
   const [username, setUsername] = useState("");
   const [sport, setSport] = useState("");
   const [team, setTeam] = useState("");
+  const [overview, setOverview] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
   const { getToken, user } = useContext(AuthContext);
@@ -70,6 +71,7 @@ function EditProfile() {
   const handleUsername = (e) => setUsername(e.target.value);
   const handleSport = (e) => setSport(e.target.value);
   const handleTeam = (e) => setTeam(e.target.value);
+  const handleOverview = (e) => setOverview(e.target.value);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -85,6 +87,7 @@ function EditProfile() {
         setImageUrl("");
         setTeam("");
         setUsername("");
+        setOverview("");
         navigate("/feed");
       })
       .catch((err) => {
@@ -121,6 +124,15 @@ function EditProfile() {
             onChange={handleTeam}
             placeholder="team"
           />
+
+          <label htmlFor="overview"></label>
+          <InputLogin
+            type="text"
+            name="overview"
+            value={overview}
+            onChange={handleOverview}
+            placeholder="Overview"
+          />
           <label htmlFor="imageUrl"></label>
           <InputLogin
             type="file"
@@ -130,7 +142,9 @@ function EditProfile() {
           />
           <LoginButton type="submit">Submit</LoginButton>
         </FormLogin>
-        <Link to={`/profile/${user._id}`}><p>Back</p></Link>
+        <Link to={`/profile/${user._id}`}>
+          <p>Back</p>
+        </Link>
       </div>
 
       {errorMessage && <p className="error-message">{errorMessage}</p>}
