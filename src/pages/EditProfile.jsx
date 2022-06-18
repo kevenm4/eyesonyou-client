@@ -75,7 +75,7 @@ function EditProfile() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const body = { username, sport, team, imageUrl };
+    const body = { username, sport, team, imageUrl, overview };
     axios
       .put(`${process.env.REACT_APP_API_URL}/api/user`, body, {
         headers: {

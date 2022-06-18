@@ -46,6 +46,11 @@ function CreateEventFormPage() {
   const [imageUrl, setImageUrl] = useState("");
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
+  const [date, setDate] = useState();
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
+  const [state, setState] = useState("");
+  const [address, setAddress] = useState("");
 
   const { getToken, user } = useContext(AuthContext);
   const token = getToken();
@@ -70,10 +75,23 @@ function CreateEventFormPage() {
   //const handleImageUrl = (e) => setImageUrl(e.target.file);
   const handleDescription = (e) => setDescription(e.target.value);
   const handleTitle = (e) => setTitle(e.target.value);
-
+  const handleDate = (e) => setDate(e.target.value);
+  const handleCity = (e) => setCity(e.target.value);
+  const handleCountry = (e) => setCountry(e.target.value);
+  const handleAddress = (e) => setAddress(e.target.value);
+  const handleState = (e) => setState(e.target.value);
   const handleSubmit = (e) => {
     e.preventDefault();
-    const body = { title, description, imageUrl };
+    const body = {
+      title,
+      description,
+      imageUrl,
+      city,
+      address,
+      state,
+      country,
+      date,
+    };
 
     axios
       .post(`${process.env.REACT_APP_API_URL}/api/event-create`, body, {
@@ -85,6 +103,11 @@ function CreateEventFormPage() {
         setImageUrl("");
         setTitle("");
         setDescription("");
+        setDate("");
+        setAddress("");
+        setCity("");
+        setCountry("");
+        setState("");
         navigate(`/feed`);
       });
   };
@@ -100,20 +123,25 @@ function CreateEventFormPage() {
             onChange={handleFileUpload}
             placeholder="imageUrl"
           />
-          <label htmlFor=""></label>
-          <InputLogin
-            type="text"
-            value={title}
-            onChange={handleTitle}
-            placeholder="title"
-          />
-          <label htmlFor="description"></label>
-          <InputLogin
-            type="text"
+          <label htmlFor="title">Title</label>
+          <InputLogin type="text" value={title} onChange={handleTitle} />
+          <label htmlFor="country">Country</label>
+          <InputLogin type="text" value={country} onChange={handleCountry} />
+          <label htmlFor="state">State</label>
+          <InputLogin type="text" value={state} onChange={handleState} />
+          <label htmlFor="city">City</label>
+          <InputLogin type="text" value={city} onChange={handleCity} />
+          <label htmlFor="address">Address</label>
+          <InputLogin type="text" value={address} onChange={handleAddress} />
+          <label htmlFor="date">Date</label>
+          <InputLogin type="date" value={date} onChange={handleDate} />
+          <label htmlFor="description">Description</label>
+          <textarea
             name="description"
             value={description}
             onChange={handleDescription}
-            placeholder="description"
+            cols="30"
+            rows="10"
           />
           <LoginButton type="submit">create</LoginButton>
         </FormLogin>

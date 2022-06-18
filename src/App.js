@@ -13,6 +13,7 @@ import CreateEventFormPage from "./pages/CreateEventFormPage";
 import SearchPage from "./pages/SearchPage";
 import UserProfile from "./pages/UserProfile";
 import EditProfile from "./pages/EditProfile";
+import EventDetails from "./pages/EventDetails";
 import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   return (
@@ -34,6 +35,14 @@ function App() {
             element={
               <IsPrivate>
                 <ProfilePage />
+              </IsPrivate>
+            }
+          />
+          <Route
+            path="/event/:eventId"
+            element={
+              <IsPrivate>
+                <EventDetails />
               </IsPrivate>
             }
           />

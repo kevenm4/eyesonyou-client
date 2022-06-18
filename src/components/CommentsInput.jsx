@@ -15,25 +15,31 @@ const LoginButton = styled.button`
   margin: 10px 5px;
 `;
 function CommentsInput(props) {
-  const { id } = props;
+  const { eventId, getDetail } = props;
   const [text, setText] = useState("");
+  const [Author, setAuthor] = useState("");
   const { getToken } = useContext(AuthContext);
   const token = getToken();
   const navigate = useNavigate();
   const handleText = (e) => setText(e.target.value);
+  const handleAuthor = (e) => setAuthor(e.target.value);
   const handleSubmit = (e) => {
     e.preventDefault();
-    const body = { text };
+    const body = { text, Author };
     axios
-      .post(`${process.env.REACT_APP_API_URL}/api/post/${id}/comment`, body, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .post(
+        `${process.env.REACT_APP_API_URL}/api/event/${eventId}/comment`,
+        body,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((response) => {
         console.log(response.data);
         setText("");
-        navigate("/feed");
+        getDetail();
       })
       .catch((err) => {
         console.log(err);
@@ -44,9 +50,11 @@ function CommentsInput(props) {
     <div>
       <form onSubmit={handleSubmit}>
         <label htmlFor="text"></label>
-        <input
+        <textarea
           type="text"
-          name="description"
+          name="text"
+          cols="30"
+          rows="10"
           value={text}
           onChange={handleText}
         />
