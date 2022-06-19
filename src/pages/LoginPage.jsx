@@ -29,11 +29,11 @@ const LoginDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-content: center;
-  background-color: rgb(229, 138, 34);
+  background-color: light;
 `;
 const LoginButton = styled.button`
   width: 100px;
-  background: black;
+  background: rgb(0, 92, 255);
   font-weight: bold;
   color: white;
   border: 1px solid #ccc;

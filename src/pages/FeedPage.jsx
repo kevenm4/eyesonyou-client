@@ -14,7 +14,7 @@ const EventCard = styled.div`
   max-width: 600px;
   text-align: center;
   font-family: arial;
-  background-color: rgb(229, 138, 34);
+  background-color: light;
   gap: 20px;
 `;
 const Card = styled.div`
@@ -25,7 +25,7 @@ const Card = styled.div`
 const Wrapper = styled.div`
   height: 100vh;
   width: 100vw;
-  background-color: rgb(229, 138, 34);
+  background-color: light;
 `;
 function FeedPage() {
   const [event, setEvent] = useState([]);
@@ -61,15 +61,17 @@ function FeedPage() {
               return (
                 <>
                   <h6>
-                    <b>{events.Author.username}</b>
+                    <Link to={`/userprofile/${events.Author._id}`}>
+                      <b>{events.Author.username}</b>
+                    </Link>
                   </h6>
                   <Card>
-                    <img src={events.imageUrl} alt="eventphoto" />
+                    <Link to={`/event/${events._id}`}>
+                      <img src={events.imageUrl} alt="eventphoto" />
+                    </Link>
+
                     <h6>{events.title}</h6>
                     <h6>{events.description}</h6>
-                    <Link to={`/event/${events._id}`}>
-                      <p>details</p>
-                    </Link>
                   </Card>
                 </>
               );

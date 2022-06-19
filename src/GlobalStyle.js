@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
    body {
     width: 100vw;
     height: 100vh;
-    background-color: rgb(229, 138, 34);
+    background-color:light;
    }  
    main {
      margin-top: 100px;

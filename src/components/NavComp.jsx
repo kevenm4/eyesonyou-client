@@ -7,7 +7,7 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 function NavComp() {
   const { isLoggedIn, user, logoutUser } = useContext(AuthContext);
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
       <Container>
         <Navbar.Brand href="/">Eyes On You</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

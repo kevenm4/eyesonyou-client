@@ -4,7 +4,16 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import CommentsInput from "../components/CommentsInput";
 import styled from "styled-components";
-
+const AllComments = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  background-color: white;
+  padding: 2px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+`;
 function EventDetails() {
   const [event, setEvent] = useState(null);
   const { eventId } = useParams();
@@ -49,7 +58,7 @@ function EventDetails() {
               );
             })}
           </>
-          <>
+          <AllComments>
             {event.comments.map((el) => {
               return (
                 <>
@@ -58,7 +67,7 @@ function EventDetails() {
                 </>
               );
             })}
-          </>
+          </AllComments>
           <CommentsInput eventId={event._id} getDetail={getDetail} />
         </>
       )}

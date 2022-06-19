@@ -29,11 +29,19 @@ const LoginDiv = styled.div`
   justify-content: center;
   height: 100vh;
   align-content: center;
-  background-color: rgb(229, 138, 34);
+  background-color: light;
+`;
+const TextArea = styled.textarea`
+  width: 90%;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: white;
+  margin: 5px;
 `;
 const LoginButton = styled.button`
   width: 100px;
-  background: black;
+  background: rgb(0, 92, 255);
   font-weight: bold;
   color: white;
   border: 1px solid #ccc;
@@ -136,7 +144,7 @@ function CreateEventFormPage() {
           <label htmlFor="date">Date</label>
           <InputLogin type="date" value={date} onChange={handleDate} />
           <label htmlFor="description">Description</label>
-          <textarea
+          <TextArea
             name="description"
             value={description}
             onChange={handleDescription}

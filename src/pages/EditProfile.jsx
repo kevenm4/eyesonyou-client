@@ -13,6 +13,15 @@ const FormLogin = styled.form`
   margin: 0 10%;
   position: relative;
 `;
+
+const TextArea = styled.textarea`
+  width: 90%;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: white;
+  margin: 5px;
+`;
 const InputLogin = styled.input`
   padding: 15px;
   border: 1px solid #ccc;
@@ -29,11 +38,11 @@ const LoginDiv = styled.div`
   justify-content: center;
   height: 100vh;
   align-content: center;
-  background-color: rgb(229, 138, 34);
+  background-color: light;
 `;
 const LoginButton = styled.button`
   width: 100px;
-  background: black;
+  background: rgb(0, 92, 255);
   font-weight: bold;
   color: white;
   border: 1px solid #ccc;
@@ -126,12 +135,13 @@ function EditProfile() {
           />
 
           <label htmlFor="overview"></label>
-          <InputLogin
+          <TextArea
             type="text"
             name="overview"
             value={overview}
             onChange={handleOverview}
-            placeholder="Overview"
+            cols="30"
+            rows="10"
           />
           <label htmlFor="imageUrl"></label>
           <InputLogin

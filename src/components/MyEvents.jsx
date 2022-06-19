@@ -4,7 +4,7 @@ import { AuthContext } from "../context/auth.context";
 import styled from "styled-components";
 const DeleteButton = styled.button`
   width: 100px;
-  background: black;
+  background: red;
   font-weight: bold;
   color: white;
   border: 1px solid #ccc;
@@ -45,7 +45,7 @@ function MyEvents(props) {
                 deleteEvent(item._id);
               }}
             >
-              Delete Event
+              Delete
             </DeleteButton>
           </div>
         );

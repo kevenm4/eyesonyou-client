@@ -15,6 +15,7 @@ const DivInfo = styled.div`
   padding-top: 50px;
 `;
 
+
 function SearchPage() {
   const [user, setUser] = useState([]);
   const [searchUser, setSearchUser] = useState([]);

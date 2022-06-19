@@ -7,17 +7,22 @@ const MainPage = styled.div`
   flex-direction: column;
   justify-content: center;
   height: 50vh;
-  background-color: rgb(229, 138, 34);
+  background-color: light;
   background-repeat: no-repeat;
   background-size: 375px 300px;
 `;
-
+const EyesLogo = styled.h1`
+  font-size: 60px;
+`;
+const Slogan = styled.p`
+  font-size: 20px;
+`;
 const DivMain = styled.div`
   height: 50vh;
 `;
 const DivSecond = styled.div`
   height: 70vh;
-  background-color: black;
+  background-color: rgb(0, 92, 255);
   color: white;
   padding-top: 100px;
 `;
@@ -30,8 +35,8 @@ function HomePage() {
   return (
     <DivMain>
       <MainPage>
-        <h1>Eyes On You</h1>
-        <p>You can get and give oportunities</p>
+        <EyesLogo>Eyes On You</EyesLogo>
+        <Slogan>You can get and give oportunities</Slogan>
       </MainPage>
       <DivSecond>
         <h1>About Us</h1>

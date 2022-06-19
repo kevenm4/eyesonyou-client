@@ -5,7 +5,7 @@ import { AuthContext } from "../context/auth.context";
 import styled from "styled-components";
 const LoginButton = styled.button`
   width: 100px;
-  background: black;
+  background:  rgb(0, 92, 255);
   font-weight: bold;
   color: white;
   border: 1px solid #ccc;
@@ -13,6 +13,14 @@ const LoginButton = styled.button`
   cursor: pointer;
   padding: 10px 5px;
   margin: 10px 5px;
+`;
+const TextArea = styled.textarea`
+  width: 90%;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: white;
+  margin: 5px;
 `;
 function CommentsInput(props) {
   const { eventId, getDetail } = props;
@@ -50,7 +58,7 @@ function CommentsInput(props) {
     <div>
       <form onSubmit={handleSubmit}>
         <label htmlFor="text"></label>
-        <textarea
+        <TextArea
           type="text"
           name="text"
           cols="30"
@@ -58,7 +66,7 @@ function CommentsInput(props) {
           value={text}
           onChange={handleText}
         />
-        <LoginButton type="submit">create</LoginButton>
+        <LoginButton type="submit">comment</LoginButton>
       </form>
     </div>
   );

@@ -15,7 +15,7 @@ const ProfileDiv = styled.div`
   justify-content: center;
   height: 100vh;
   align-content: center;
-  background-color: rgb(229, 138, 34);
+  background-color: light;
 `;
 
 const List = styled.div`
@@ -35,7 +35,7 @@ const Card = styled.div`
 
 const LoginButton = styled.button`
   width: 100px;
-  background: black;
+  background: rgb(0, 92, 255);
   font-weight: bold;
   color: white;
   border: 1px solid #ccc;
@@ -46,7 +46,7 @@ const LoginButton = styled.button`
 `;
 const DeleteButton = styled.button`
   width: 100px;
-  background: black;
+  background: red;
   font-weight: bold;
   color: white;
   border: 1px solid #ccc;
@@ -57,15 +57,15 @@ const DeleteButton = styled.button`
 `;
 const ProfileInfo = styled.div`
   border-bottom: 2px solid black;
-  padding: 1rem;
+  padding-top: 2rem;
   gap: 3px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 70vh;
+  height: 90vh;
   width: 100vw;
   align-content: center;
-  background-color: rgb(229, 138, 34);
+  background-color: light;
 `;
 const EventCard = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -79,8 +79,8 @@ const EventCard = styled.div`
 const ProfileImg = styled.img`
   border: 1px solid #ccc;
   border-radius: 100px;
-  width: 140px;
-  height: 120px;
+  width: 100px;
+  height: 80px;
   align-items: center;
 `;
 
@@ -134,9 +134,9 @@ function ProfilePage() {
             <Link to={"/edit-profile"}>
               <LoginButton>Edit</LoginButton>
             </Link>
-            <h6>Name:{user.username}</h6>
-            <h6>Sport:{user.sport}</h6>
-            <h6>Team:{user.team}</h6>
+            <h6>{user.username}</h6>
+            <h6>{user.sport}</h6>
+            <h6>{user.team}</h6>
             <h6>{user.types}</h6>
             <p>{user.overview}</p>
             <DeleteButton onClick={deleteUser}>Delete</DeleteButton>
@@ -146,7 +146,9 @@ function ProfilePage() {
               user.Events.map((el) => {
                 return (
                   <Card>
-                    <img src={el.imageUrl} alt="postPhoto" />
+                    <Link to={`/event/${el._id}`}>
+                      <img src={el.imageUrl} alt="postPhoto" />
+                    </Link>
                     <h1>{el.author && el.author.username}</h1>
                     <p>{el.description}</p>
                     <MyEvents
